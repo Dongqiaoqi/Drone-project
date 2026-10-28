@@ -1,0 +1,424 @@
+/* ============================================================
+   无人机公司网站 - 自定义样式
+   风格：简约科技商务风，贴合无人机行业，干净清爽
+   ============================================================ */
+
+/* ---------- 全局 ---------- */
+:root {
+    /* 主题色：科技蓝 */
+    --drone-primary: #1a73e8;
+    --drone-primary-dark: #1557b0;
+    --drone-accent: #00c2ff;
+    --drone-dark: #0f172a;
+    --drone-gray: #64748b;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Microsoft YaHei", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    padding-top: 70px;  /* 固定导航栏高度 */
+}
+
+/* ---------- 导航栏 ---------- */
+.bg-drone {
+    background: linear-gradient(135deg, var(--drone-dark) 0%, #1e3a5f 100%);
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem !important;
+    transition: color 0.2s;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--drone-accent) !important;
+}
+
+/* 移动端导航链接加大点击区域，适配手指点击 */
+@media (max-width: 991.98px) {
+    .navbar-nav .nav-link {
+        padding: 0.8rem 1rem !important;
+        font-size: 1.05rem;
+    }
+}
+
+/* ---------- 主内容区 ---------- */
+.main-content {
+    min-height: calc(100vh - 70px - 200px);
+}
+
+/* ---------- 通用区块 ---------- */
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--drone-dark);
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--drone-primary), var(--drone-accent));
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    color: var(--drone-gray);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* ---------- 按钮 ---------- */
+.btn-drone {
+    background: linear-gradient(135deg, var(--drone-primary), var(--drone-accent));
+    border: none;
+    color: #fff;
+    padding: 0.6rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-drone:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26, 115, 232, 0.35);
+    color: #fff;
+}
+
+/* ---------- 卡片 ---------- */
+.drone-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s;
+    height: 100%;
+}
+
+.drone-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.drone-card .icon {
+    font-size: 2.5rem;
+    color: var(--drone-primary);
+    margin-bottom: 1rem;
+}
+
+/* ---------- 首页 Hero 轮播 ---------- */
+.hero-carousel .carousel-item {
+    height: 560px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #1a73e8 100%);
+}
+
+/* 三个业务滚屏的差异化背景（未上传图片时用于区分） */
+.hero-carousel .carousel-item.hero-performance {
+    background: linear-gradient(135deg, #0b1f3a 0%, #0e4d92 55%, #00c2ff 100%);
+}
+
+.hero-carousel .carousel-item.hero-science {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #2bb673 100%);
+}
+
+.hero-carousel .carousel-item.hero-aerial {
+    background: linear-gradient(135deg, #0f172a 0%, #243b6b 50%, #7b61ff 100%);
+}
+
+.hero-carousel .carousel-caption {
+    bottom: 50%;
+    transform: translateY(50%);
+}
+
+.hero-carousel .carousel-caption h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .hero-carousel .carousel-item {
+        height: 360px;
+    }
+    .hero-carousel .carousel-caption h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* ---------- 业务快速入口 ---------- */
+.quick-entry {
+    text-decoration: none;
+    color: inherit;
+    /* block + 100% 让同一行卡片自动等高 */
+    display: block;
+    height: 100%;
+}
+
+.quick-entry .drone-card {
+    cursor: pointer;
+    /* 统一卡片最小高度，首页各区块卡片规格一致 */
+    min-height: 240px;
+}
+
+/* ---------- 图片自适应 ---------- */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 案例相册 */
+.case-photo {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+    aspect-ratio: 4 / 3;
+    background: #e2e8f0;
+}
+
+.case-photo:hover {
+    transform: scale(1.03);
+}
+
+.case-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 案例卡片（图片 + 标题 + 描述） */
+.case-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.case-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+}
+
+.case-cover {
+    aspect-ratio: 4 / 3;
+    background: #e2e8f0;
+    overflow: hidden;
+}
+
+.case-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.case-cover-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #94a3b8;
+}
+
+/* 可点击放大的案例图片 */
+.case-zoom {
+    cursor: zoom-in;
+}
+
+/* 前台返回键：固定在顶部导航栏下方的卡片按钮，滚动时保持可见 */
+.back-link {
+    position: sticky;
+    top: 76px;
+    z-index: 1020;
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    margin-bottom: 16px;
+    padding: 10px 18px;
+    font-size: 1.05rem;
+    color: var(--drone-primary);
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.back-link .bi {
+    font-size: 1.15rem;
+}
+
+.back-link:hover {
+    color: var(--drone-primary-dark);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+}
+
+/* 图片放大预览层 */
+.image-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1090;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(15, 23, 42, 0.9);
+}
+
+.image-lightbox.show {
+    display: flex;
+}
+
+.lightbox-figure {
+    margin: 0;
+    max-width: 92vw;
+    max-height: 92vh;
+    text-align: center;
+}
+
+.lightbox-figure img {
+    max-width: 92vw;
+    max-height: 82vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-figure figcaption {
+    margin-top: 12px;
+    color: #e2e8f0;
+    font-size: 0.95rem;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #fff;
+    font-size: 2.2rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.85;
+}
+
+.lightbox-close:hover {
+    opacity: 1;
+}
+
+/* ---------- PDF 下载卡片 ---------- */
+.pdf-card {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.pdf-card .pdf-icon {
+    font-size: 2.5rem;
+    color: #ea4335;
+    margin-right: 1rem;
+}
+
+/* ---------- 联系方式 ---------- */
+.contact-item {
+    background: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.contact-item .icon {
+    font-size: 1.8rem;
+    color: var(--drone-primary);
+    margin-bottom: 0.5rem;
+}
+
+/* ---------- 页脚 ---------- */
+.footer {
+    background: var(--drone-dark) !important;
+}
+
+/* ---------- 后台管理样式 ---------- */
+/* 顶部栏固定高度，便于左侧导航贴齐 */
+.admin-navbar {
+    height: 56px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.admin-sidebar {
+    min-height: calc(100vh - 56px);
+    background: #1e293b;
+}
+
+/* 电脑 / 平板：左侧导航固定不动，只滚动右侧内容 */
+@media (min-width: 768px) {
+    .admin-sidebar {
+        position: sticky;
+        top: 56px;
+        align-self: flex-start;
+        height: calc(100vh - 56px);
+        min-height: 0;
+        overflow-y: auto;
+    }
+}
+
+.admin-sidebar .nav-link {
+    color: #cbd5e1;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    margin: 0.2rem 0;
+}
+
+.admin-sidebar .nav-link:hover,
+.admin-sidebar .nav-link.active {
+    background: rgba(26, 115, 232, 0.2);
+    color: #fff;
+}
+
+.admin-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* 登录页 */
+.login-page {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.login-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}

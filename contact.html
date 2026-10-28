@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}联系我们 - 无人机科技{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <h2 class="section-title">{{ contents.get('title', '联系我们') }}</h2>
+            <p class="section-subtitle">{{ contents.get('subtitle', '欢迎通过以下方式与我们取得联系') }}</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <!-- 公司地址 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="contact-item text-center h-100">
+                    <div class="icon"><i class="bi bi-geo-alt-fill"></i></div>
+                    <h5>公司地址</h5>
+                    <p class="text-muted mb-0">{{ contents.get('address', '北京市海淀区中关村科技园') }}</p>
+                </div>
+            </div>
+
+            <!-- 联系电话 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="contact-item text-center h-100">
+                    <div class="icon"><i class="bi bi-telephone-fill"></i></div>
+                    <h5>联系电话</h5>
+                    <p class="text-muted mb-0">{{ contents.get('phone', '400-888-8888') }}</p>
+                </div>
+            </div>
+
+            <!-- 微信 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="contact-item text-center h-100">
+                    <div class="icon"><i class="bi bi-wechat"></i></div>
+                    <h5>微信</h5>
+                    <p class="text-muted mb-0">{{ contents.get('wechat', 'DroneService2024') }}</p>
+                </div>
+            </div>
+
+            <!-- 邮箱 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="contact-item text-center h-100">
+                    <div class="icon"><i class="bi bi-envelope-fill"></i></div>
+                    <h5>电子邮箱</h5>
+                    <p class="text-muted mb-0">{{ contents.get('email', 'contact@drone-company.com') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

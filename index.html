@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}首页 - 无人机科技{% endblock %}
+
+{% block content %}
+<!-- ============ Hero 轮播（首页 banner + 三个业务滚屏） ============ -->
+<div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        {% for slide in slides %}
+        <button type="button" data-bs-target="#heroCarousel"
+                data-bs-slide-to="{{ loop.index0 }}"
+                class="{% if loop.first %}active{% endif %}"
+                aria-current="{% if loop.first %}true{% endif %}"></button>
+        {% endfor %}
+    </div>
+
+    <div class="carousel-inner">
+        {% for slide in slides %}
+        <div class="carousel-item {% if loop.first %}active{% endif %}{% if slide.variant %} hero-{{ slide.variant }}{% endif %}">
+            {% if slide.image %}
+            <img src="{{ url_for('front.uploaded_file', file_type='images', filename=slide.image) }}"
+                 class="d-block w-100 h-100" alt="{{ slide.title }}"
+                 style="object-fit: cover;">
+            {% endif %}
+            <div class="carousel-caption">
+                <h1 class="display-4 fw-bold">{{ slide.title }}</h1>
+                {% if slide.subtitle %}
+                <p class="lead fs-5 mt-3">{{ slide.subtitle }}</p>
+                {% endif %}
+                <a href="{{ slide.link }}" class="btn btn-drone mt-3">{{ slide.link_text }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<!-- ============ 业务快速入口 ============ -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <h2 class="section-title">{{ texts.get('services_title', '业务服务') }}</h2>
+            <p class="section-subtitle">{{ texts.get('services_subtitle', '专业的无人机综合服务，覆盖培训、表演、航拍与科普') }}</p>
+        </div>
+
+        <!-- 两个主业务卡片：无人机培训、无人机活动 -->
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <a href="{{ url_for('front.training') }}" class="quick-entry">
+                    <div class="drone-card text-center">
+                        <div class="icon"><i class="bi bi-mortarboard-fill"></i></div>
+                        <h4 class="fw-bold mt-2">{{ texts.get('training_card_title', '无人机培训') }}</h4>
+                        <p class="text-primary small mb-1">{{ texts.get('training_card_subtitle', 'AOPA认证 · 驾驶员/机长培训') }}</p>
+                        <p class="text-muted small mb-2">{{ texts.get('training_card_intro', '从零基础到持证飞手，完善课程体系与实操场地。') }}</p>
+                        <span class="text-primary small">查看详情 <i class="bi bi-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-5">
+                <a href="{{ url_for('front.activities') }}" class="quick-entry">
+                    <div class="drone-card text-center">
+                        <div class="icon"><i class="bi bi-stars"></i></div>
+                        <h4 class="fw-bold mt-2">{{ texts.get('activities_card_title', '无人机活动') }}</h4>
+                        <p class="text-primary small mb-1">{{ texts.get('activities_card_subtitle', '表演 · 航拍 · 科普研学') }}</p>
+                        <p class="text-muted small mb-2">{{ texts.get('activities_card_intro', '灯光秀、影视航拍与青少年研学，一站式活动服务。') }}</p>
+                        <span class="text-primary small">查看详情 <i class="bi bi-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ 公司简介 ============ -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-4">
+            <div class="col-lg-8">
+                <h2 class="section-title">{{ texts.get('about_title', '关于我们') }}</h2>
+                <p class="section-subtitle">{{ texts.get('intro_text', '我们致力于为政府、企业及教育机构提供专业的无人机一站式解决方案。') }}</p>
+            </div>
+        </div>
+
+        <!-- “查看详情”改为与业务入口同规格的卡片 -->
+        <div class="row justify-content-center g-4">
+            <div class="col-md-6 col-lg-3">
+                <a href="{{ url_for('front.about') }}" class="quick-entry">
+                    <div class="drone-card text-center">
+                        <div class="icon"><i class="bi bi-building"></i></div>
+                        <h5>公司介绍</h5>
+                        <p class="text-muted small">企业背景 · 公司资质 · 团队介绍</p>
+                        <span class="text-primary small">
+                            查看详情 <i class="bi bi-arrow-right"></i>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

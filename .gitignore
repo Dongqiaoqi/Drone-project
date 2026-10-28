@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+
+# 数据库（SQLite 文件不纳入版本控制，部署时自动生成）
+instance/
+*.db
+*.sqlite
+*.sqlite3
+
+# 上传的文件（图片、PDF 不纳入版本控制，部署后由后台上传）
+uploads/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log

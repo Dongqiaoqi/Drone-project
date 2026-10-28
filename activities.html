@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}无人机活动服务 - 无人机科技{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <!-- 返回首页 -->
+        <a href="{{ url_for('front.index') }}" class="back-link mb-3">
+            <i class="bi bi-arrow-left me-2"></i>返回首页
+        </a>
+
+        <div class="row justify-content-center text-center mb-5">
+            <h2 class="section-title">{{ contents.get('title', '无人机活动服务') }}</h2>
+            <p class="section-subtitle">{{ contents.get('subtitle', '无人机表演 · 航拍服务 · 科普研学') }}</p>
+        </div>
+
+        <!-- 三个业务，点击分别进入各自的介绍与项目案例 -->
+        <div class="row g-4">
+            {% set services = [
+                ('performance', '无人机表演', 'bi-stars'),
+                ('aerial', '航拍服务', 'bi-camera-fill'),
+                ('science', '科普研学', 'bi-mortarboard')
+            ] %}
+            {% for slug, name, icon in services %}
+            <div class="col-lg-4">
+                <a href="{{ url_for('front.activity_detail', slug=slug) }}" class="quick-entry">
+                    <div class="drone-card text-center h-100">
+                        <div class="icon"><i class="bi {{ icon }}"></i></div>
+                        <h4>{{ titles.get(slug, name) }}</h4>
+                        {% if subtitles.get(slug) %}
+                        <p class="text-primary small mb-1">{{ subtitles.get(slug) }}</p>
+                        {% endif %}
+                        <p class="text-muted" style="white-space: pre-wrap;">{{ contents.get(slug, '') }}</p>
+                        <span class="text-primary small">
+                            查看项目案例 <i class="bi bi-arrow-right"></i>
+                        </span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

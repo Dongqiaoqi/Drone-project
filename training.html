@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}无人机培训业务 - 无人机科技{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <!-- 返回首页 -->
+        <a href="{{ url_for('front.index') }}" class="back-link mb-3">
+            <i class="bi bi-arrow-left me-2"></i>返回首页
+        </a>
+
+        <div class="row justify-content-center text-center mb-5">
+            <h2 class="section-title">{{ contents.get('title', '无人机培训业务') }}</h2>
+            <p class="section-subtitle">{{ contents.get('subtitle', '中国AOPA认证培训机构，专业无人机驾驶员/机长培养') }}</p>
+        </div>
+
+        <!-- 课程介绍 -->
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h4 class="fw-bold text-primary mb-3"><i class="bi bi-book me-2"></i>{{ contents.get('courses_title', '课程介绍') }}</h4>
+                <div class="drone-card">
+                    <p style="white-space: pre-wrap;">{{ contents.get('courses', '') }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 师资力量 -->
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h4 class="fw-bold text-primary mb-3"><i class="bi bi-person-badge me-2"></i>{{ contents.get('instructors_title', '师资力量') }}</h4>
+                <div class="drone-card">
+                    <p style="white-space: pre-wrap;">{{ contents.get('instructors', '') }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 培训场地 -->
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h4 class="fw-bold text-primary mb-3"><i class="bi bi-geo-alt me-2"></i>{{ contents.get('venue_title', '培训场地') }}</h4>
+                <div class="drone-card">
+                    <p style="white-space: pre-wrap;">{{ contents.get('venue', '') }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 培训案例：本业务独立案例列表 -->
+        <div class="row mb-5">
+            <div class="col-lg-10 mx-auto">
+                <h4 class="fw-bold text-primary mb-3">
+                    <i class="bi bi-images me-2"></i>{{ contents.get('gallery_title', '培训案例') }}
+                </h4>
+                {% if cases %}
+                <div class="row g-4">
+                    {% for case in cases %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="case-card h-100">
+                            <div class="case-cover">
+                                {% if case.image %}
+                                <img src="{{ url_for('front.uploaded_file', file_type='images', filename=case.image) }}"
+                                     alt="{{ case.title or '培训案例' }}" class="case-zoom"
+                                     data-caption="{{ case.title }}" title="点击放大查看" loading="lazy">
+                                {% else %}
+                                <div class="case-cover-empty"><i class="bi bi-image display-4"></i></div>
+                                {% endif %}
+                            </div>
+                            <div class="p-3">
+                                {% if case.title %}
+                                <h5 class="fw-bold mb-2">{{ case.title }}</h5>
+                                {% endif %}
+                                {% if case.text %}
+                                <p class="text-muted mb-0" style="white-space: pre-wrap;">{{ case.text }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="drone-card text-center text-muted">
+                    培训案例整理中，敬请期待。
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- 课程手册下载 -->
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <div class="drone-card bg-light">
+                    <i class="bi bi-mortarboard-fill display-4 text-primary"></i>
+                    <h5 class="mt-3">获取完整课程手册</h5>
+                    <p class="text-muted">详细了解课程大纲、学时安排与报名流程</p>
+                    <a href="{{ url_for('front.downloads') }}" class="btn btn-drone">前往资料下载</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

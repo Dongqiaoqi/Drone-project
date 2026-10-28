@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理 - 无人机科技</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<!-- 顶部栏 -->
+<nav class="navbar navbar-dark bg-drone sticky-top admin-navbar">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">
+            <i class="bi bi-airplane-engines me-2"></i>后台管理系统
+        </span>
+        <div class="d-flex align-items-center">
+            <span class="text-light me-3"><i class="bi bi-person-circle me-1"></i>{{ current_user.username }}</span>
+            <a href="{{ url_for('front.index') }}" class="btn btn-outline-light btn-sm me-2" target="_blank">
+                <i class="bi bi-eye me-1"></i>查看前台
+            </a>
+            <a href="{{ url_for('admin.logout') }}" class="btn btn-outline-danger btn-sm">
+                <i class="bi bi-box-arrow-right me-1"></i>退出
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- 侧边栏 -->
+        <div class="col-md-3 col-lg-2 p-0 admin-sidebar">
+            <div class="p-3">
+                <h6 class="text-secondary small text-uppercase">页面管理</h6>
+                <nav class="nav flex-column">
+                    {% for key, name in pages %}
+                    <a class="nav-link" href="{{ url_for('admin.edit', page=key) }}">
+                        <i class="bi bi-file-earmark-text me-2"></i>{{ name }}
+                    </a>
+                    {% endfor %}
+                </nav>
+            </div>
+        </div>
+
+        <!-- 主内容 -->
+        <main class="col-md-9 col-lg-10 p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="mb-0"><i class="bi bi-speedometer2 me-2"></i>管理首页</h3>
+            </div>
+
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle me-2"></i>
+                点击左侧菜单或下方卡片，进入对应页面的内容编辑。修改保存后前台将自动更新。
+            </div>
+
+            <!-- 页面卡片 -->
+            <div class="row g-3">
+                {% for key, name in pages %}
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <a href="{{ url_for('admin.edit', page=key) }}" class="text-decoration-none">
+                        <div class="admin-card p-4 text-center h-100">
+                            <i class="bi bi-file-earmark-text display-5 text-primary"></i>
+                            <h6 class="mt-2 mb-0 text-dark">{{ name }}</h6>
+                            <small class="text-muted">点击编辑内容</small>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
